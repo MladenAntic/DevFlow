@@ -1,12 +1,8 @@
-"use server";
+"use server"
 
 import User from "@/database/user.model";
-import { connectToDatabase } from "../mongoose";
-import {
-  CreateUserParams,
-  DeleteUserParams,
-  UpdateUserParams,
-} from "./shared.types";
+import { connectToDatabase } from "../mongoose"
+import { CreateUserParams, DeleteUserParams, UpdateUserParams } from "./shared.types";
 import { revalidatePath } from "next/cache";
 import Question from "@/database/question.model";
 
@@ -15,6 +11,7 @@ export async function getUserById(params: any) {
     connectToDatabase();
 
     const { userId } = params;
+
     const user = await User.findOne({ clerkId: userId });
 
     return user;
@@ -62,17 +59,15 @@ export async function deleteUser(params: DeleteUserParams) {
 
     const user = await User.findOneAndDelete({ clerkId });
 
-    if (!user) {
-      throw new Error("User not found");
+    if(!user) {
+      throw new Error('User not found');
     }
 
     // Delete user from database
-    // questions, answers, comments, etc.
+    // and questions, answers, comments, etc.
 
     // get user question ids
-    // const userQuestionIds = await Question.find({ author: user._id }).distinct(
-    //   "_id"
-    // );
+    // const userQuestionIds = await Question.find({ author: user._id}).distinct('_id');
 
     // delete user questions
     await Question.deleteMany({ author: user._id });
