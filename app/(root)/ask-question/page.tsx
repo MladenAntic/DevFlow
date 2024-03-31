@@ -7,7 +7,7 @@ import React from "react";
 const Page = async () => {
   // const { userId } = auth();
 
-  const userId = "CL123456";
+  const userId = "123456789";
 
   if (!userId) redirect("/sign-in");
 
