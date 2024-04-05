@@ -15,12 +15,24 @@ import User from "@/database/user.model";
 import { revalidatePath } from "next/cache";
 import Interaction from "@/database/interaction.model";
 import Answer from "@/database/answer.model";
+import { FilterQuery } from "mongoose";
 
 export async function getQuestions(params: GetQuestionsParams) {
   try {
     connectToDatabase();
 
-    const questions = await Question.find({})
+    const { searchQuery } = params;
+
+    const query: FilterQuery<typeof Question> = {};
+
+    if (searchQuery) {
+      query.$or = [
+        { title: { $regex: new RegExp(searchQuery, "i") } },
+        { content: { $regex: new RegExp(searchQuery, "i") } },
+      ];
+    }
+
+    const questions = await Question.find(query)
       .populate({
         path: "tags",
         model: Tag,
@@ -222,7 +234,9 @@ export async function getHotQuestions() {
   try {
     connectToDatabase();
 
-    const hotquestions = await Question.find({}).sort({views: -1, upvotes: -1}).limit(5)
+    const hotquestions = await Question.find({})
+      .sort({ views: -1, upvotes: -1 })
+      .limit(5);
 
     return hotquestions;
   } catch (error) {
