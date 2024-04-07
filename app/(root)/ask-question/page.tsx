@@ -4,6 +4,14 @@ import { auth } from "@clerk/nextjs";
 import { redirect } from "next/navigation";
 import React from "react";
 
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "DevFlow | Ask A Question",
+  description:
+    "A developer community platform to help you solve your coding problems. Ask questions, get answers, and grow your skills.",
+};
+
 const Page = async () => {
   const { userId } = auth();
 

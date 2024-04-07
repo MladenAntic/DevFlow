@@ -2,10 +2,17 @@ import Filter from "@/components/shared/Filter";
 import NoResult from "@/components/shared/NoResult";
 import Pagination from "@/components/shared/Pagination";
 import LocalSearchBar from "@/components/shared/search/LocalSearchBar";
-import { TagFilters} from "@/constants/filters";
+import { TagFilters } from "@/constants/filters";
 import { getAllTags } from "@/lib/actions/tag.actions";
 import { SearchParamsProps } from "@/types";
 import Link from "next/link";
+
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "DevFlow | Tags",
+  description: "A list of all tags available on DevFlow.",
+};
 
 const Page = async ({ searchParams }: SearchParamsProps) => {
   const result = await getAllTags({
