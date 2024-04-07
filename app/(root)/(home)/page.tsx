@@ -17,7 +17,7 @@ export default async function Home({ searchParams }: SearchParamsProps) {
     page: searchParams.page ? +searchParams.page : 1,
   });
 
-  // Fetch recommended
+  // Fetch recommended questions
 
   return (
     <>
