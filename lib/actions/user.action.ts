@@ -17,7 +17,6 @@ import { revalidatePath } from "next/cache";
 import Question from "@/database/question.model";
 import Tag from "@/database/tag.model";
 import Answer from "@/database/answer.model";
-import { isContext } from "vm";
 
 export async function getUserById(params: any) {
   try {
@@ -286,6 +285,7 @@ export async function getUserQuestions(params: GetUserStatsParams) {
 
     const userQuestions = await Question.find({ author: userId })
       .sort({
+        createdAt: -1,
         views: -1,
         upvotes: -1,
       })
