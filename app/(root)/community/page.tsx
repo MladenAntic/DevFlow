@@ -1,11 +1,17 @@
 import UserCard from "@/components/cards/UserCard";
 import Filter from "@/components/shared/Filter";
 import Pagination from "@/components/shared/Pagination";
-import LocalSearchBar from "@/components/shared/search/LocalSearchBar";
 import { UserFilters } from "@/constants/filters";
 import { getAllUsers } from "@/lib/actions/user.action";
 import { SearchParamsProps } from "@/types";
 import Link from "next/link";
+import type { Metadata } from "next";
+import LocalSearchBar from "@/components/shared/search/LocalSearchBar";
+
+export const metadata: Metadata = {
+  title: "DevFlow | Community",
+  description: "Join the community of amazing minds on DevFlow.",
+};
 
 const Page = async ({ searchParams }: SearchParamsProps) => {
   const result = await getAllUsers({

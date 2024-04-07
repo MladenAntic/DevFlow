@@ -10,7 +10,7 @@ import { toggleSaveQuestion } from "@/lib/actions/user.action";
 import { formatAndDivideNumber } from "@/lib/utils";
 import Image from "next/image";
 import { usePathname, useRouter } from "next/navigation";
-import React, { useEffect } from "react";
+import { useEffect } from "react";
 import { toast } from "../ui/use-toast";
 
 interface Props {

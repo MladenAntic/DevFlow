@@ -38,7 +38,7 @@ const Question = ({ mongoUserId, type, questionDetails }: Props) => {
   const pathname = usePathname();
 
   const parsedQuestionDetails = questionDetails && JSON.parse(questionDetails || "");
-  const groupedTags = parsedQuestionDetails?.tags.map((tag) => tag.name);
+  const groupedTags = parsedQuestionDetails?.tags.map((tag: any) => tag.name);
 
   // 1. Define your form.
   const form = useForm<z.infer<typeof QuestionsSchema>>({
@@ -77,7 +77,7 @@ const Question = ({ mongoUserId, type, questionDetails }: Props) => {
         router.push("/");
       }
     } catch (error) {
-      console.error(error);
+      console.log(error);
     } finally {
       setIsSubmitting(false);
     }

@@ -1,6 +1,5 @@
 import Image from "next/image";
 import Link from "next/link";
-import React from "react";
 import RenderTag from "./RenderTag";
 import { getHotQuestions } from "@/lib/actions/question.action";
 import { getMostPopularTags } from "@/lib/actions/tag.actions";

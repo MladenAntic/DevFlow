@@ -4,7 +4,6 @@ import { URLProps } from "@/types";
 import { SignedIn, auth } from "@clerk/nextjs";
 import Image from "next/image";
 import Link from "next/link";
-import React from "react";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { getJoinedDate } from "@/lib/utils";
 import ProfileLink from "@/components/shared/ProfileLink";
@@ -103,7 +102,7 @@ const Page = async ({ params, searchParams }: URLProps) => {
               Answers
             </TabsTrigger>
           </TabsList>
-          <TabsContent value="top-posts">
+          <TabsContent value="top-posts" className="mt-5 flex w-full flex-col gap-6">
             <QuestionsTab
               searchParams={searchParams}
               userId={userInfo.user._id}
