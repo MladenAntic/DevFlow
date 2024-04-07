@@ -21,13 +21,13 @@ export async function getTopInteractedTags(params: GetTopInteractedTagsParams) {
 
     if (!user) throw new Error("User not found");
 
-    // Find interactions for the user and group by tags...
-    // Interaction...
+    const popularTags = await Tag.aggregate([
+      { $project: { name: 1, numberOfQuestions: { $size: "$questions" } } },
+      { $sort: { numberOfQuestions: -1 } },
+      { $limit: 2 },
+    ]);
 
-    return [
-      { _id: "1", name: "tag1" },
-      { _id: "2", name: "tag2" },
-    ];
+    return popularTags;
   } catch (error) {
     console.log(error);
     throw error;
