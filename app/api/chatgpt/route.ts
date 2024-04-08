@@ -15,7 +15,7 @@ export const POST = async (request: Request) => {
         messages: [
           {
             role: 'system',
-            content: 'You are a knowlegeable assistant that provides quality information.'
+            content: 'You are a helpful assistant that provides quality information regarding programming questions.'
           }, {
             role: 'user',
             content: `Tell me ${question}`
